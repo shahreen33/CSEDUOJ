@@ -1,0 +1,76 @@
+body {
+   background-image: url("back.jpg");
+}
+h1 {
+    color: black ;
+    font-family: verdana;
+    font-size: 80px;
+}
+h2 {
+    color: black ;
+    font-family: verdana;
+    font-size: 30px;
+}
+input[type=text] {
+    width: 20%;
+    margin: 5px 5px;
+    box-sizing: w3-round;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    background-color: white;
+    background-position: 360px 2px;
+    background-repeat: no-repeat;
+    padding: 10px 15px 10px 15px;
+}
+
+input[type=email] {
+    width: 30%;
+    margin: 5px 5px;
+    box-sizing: w3-round;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('ic1.png');
+    background-position: 360px 2px;
+    background-repeat: no-repeat;
+    padding: 10px 15px 10px 15px;
+}
+
+input[type=password] {
+    width: 30%;
+    margin: 0px 5px;
+    box-sizing: w3-round;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    background-color: white;
+    background-position: 360px 2px;
+    background-repeat: no-repeat;
+    padding: 0px 15px 10px 15px;
+}
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px 8px;
+    cursor: pointer;
+}
+input[type=submit] {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 8px;
+    cursor: pointer;
+}
