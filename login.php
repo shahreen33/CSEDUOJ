@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
+        <link rel="icon" type="image/gif" href="logo.png" />
 <meta charset="utf-8">
 
 <link rel="stylesheet" href="register.css" >
 
 <title>Log In</title>
+<style>
+    body{
+        background-image: url("register_msg.jpg");
+    }
+</style>
 </head>
+
 <body>
   
 <?php
@@ -44,19 +51,6 @@ if (isset($_REQUEST['id'])){
        }
 }
    
-    else{
-            ?>
-            <div class="form">
-            <h2>Log In</h2>
-            <form name="userverification" action="" method="post">
-            <br> <input type="text" name="id" placeholder="ID" required /><br>
-            <br><input type="password" name="password" placeholder="Password" required /><br>
-            <br><input type="submit" name="submit" value="Submit" /> 
-            </form>
-            </div>
-            <!--<a href="signup.php" class="button">SIGN UP</a>-->
-            <?php 
-            echo "<br/>Click here to <a href='signin.php'>Sign In</a></div>";
-    } ?>
+   ?>
 </body>
 </html>

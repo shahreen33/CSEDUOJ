@@ -32,7 +32,9 @@ if (mysqli_connect_errno())
                 "contestDescription VARCHAR( 128 ) NULL ,". 
                 "contestAnnouncements VARCHAR( 128 ) NULL ,". 
                 "contestStatus INT NOT NULL DEFAULT '0',".
-                "PRIMARY KEY (contestId)".
+                "setterId VARCHAR( 128 ) NOT NULL ,".    
+                "PRIMARY KEY (contestId),".
+                "FOREIGN KEY (setterId) REFERENCES users(id)".
                 ")";
           if(!mysqli_query($con, $qry))
             {

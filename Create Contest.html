@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://localhost/CSEDUOJ-ProbablyFinal/createContest.php -->
+<html class="gr__localhost"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" href="./Create Contest_files/addProblem.css">
+<link rel="stylesheet" href="./Create Contest_files/w3.css">
+<link rel="stylesheet" href="./Create Contest_files/latin.css">
+<link rel="stylesheet" href="./Create Contest_files/font-awesome.css">
+<title>Create Contest</title>
+</head>
+<body data-gr-c-s-loaded="true">
+    <style>
+    input[type=date] {
+    width: 20%;
+    margin: 5px 5px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    background-color: white;
+    background-position: 360px 2px;
+    background-repeat: no-repeat;
+    padding: 10px 15px 10px 15px;
+}   
+ input[type=time] {
+    width: 20%;
+    margin: 5px 5px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    background-color: white;
+    background-position: 360px 2px;
+    background-repeat: no-repeat;
+    padding: 10px 15px 10px 15px;
+}   
+   input[type=number] {
+    width: 10%;
+    margin: 5px 5px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    background-color: white;
+    background-position: 360px 2px;
+    background-repeat: no-repeat;
+    padding: 10px 15px 10px 15px;
+}  
+select{
+     width: 20%;
+    margin: 5px 5px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    background-color: white;
+    background-position: 360px 2px;
+    background-repeat: no-repeat;
+    padding: 10px 15px 10px 15px;
+}  
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px 8px;
+    cursor: pointer;
+}
+    </style>
+        
+            <div class="form">
+            <h2>Create Contest</h2>
+            <h3>Basic Information</h3>
+            <form name="createContest" action="http://localhost/CSEDUOJ-ProbablyFinal/createContest.php" method="post">
+            <br> <input type="text" name="contestTitle" placeholder="Contest Title" required="">Keep as short as possible<br>
+            <br><input type="date" name="contestDate" required=""> Starting date<br>
+            <br><input type="time" name="contestTime" required=""> Starting time<br>
+            <br><input type="number" name="contestDurationHours" min="1" max="240" placeholder="Hours"><input type="number" name="contestDurationMinutes" min="0" max="59" placeholder="Minutes">Duration<br>
+            <br><input type="text" name="contestDescription" placeholder="Description">Write any description if needed.<br>
+            <br><input type="text" name="contestAnnouncements" placeholder="Announcements">Write any announcement if needed.<br>
+            <p id="warning_msg"></p><br>
+            <h3>Add problems</h3>
+            <input type="button" value="Add problem" onclick="addRow()">
+            <input type="button" value="Delete Problem" onclick="deleteRow()">
+            <p id="msg"></p><table id="problemList">
+                <tbody><tr>
+                    <td>
+                         <select id="oj" name="oj[]" style="width:120px;"><option value="SPOJ">SPOJ</option><option value="codeforces">Codeforces</option></select>
+                    </td>
+                    <td>
+                        <input id="probId" type="text" style="width:120px;" name="probId[]" onkeyup="crawler(0)">
+                    </td>
+                    <td>
+                        <input type="text" style="width:120px;" name="probName[]">
+                    </td>
+                    <td>
+ 
+hoila<h2 id="problem-name" class="text-center">QTREE - Query on a tree</h2>hello</td>
+                </tr>
+                
+            <tr><td><select id="oj" name="oj[]" style="width:120px;"><option value="SPOJ">SPOJ</option><option value="codeforces">Codeforces</option></select></td><td> <input id="probId" type="text" style="width:120px;" name="probId[]" onkeyup="crawler(1)"></td><td><input type="text" style="width:120px;" name="probName[]"></td><td>
+ 
+<div class="title">B. Sereja and Suffixes</div>hello</td></tr></tbody></table>
+            <h3></h3>
+            <br><input type="submit" name="submit" value="Submit"> 
+            </form>
+            </div>
+
+    <script>
+       
+        function crawler(num)
+        {
+            var p = document.getElementsByName('probId[]')[num].value;
+            var id = p.toString();
+            var len = id.length;
+            var oj = document.getElementsByName("oj[]")[num].value;
+            var ojName = oj.toString();
+            console.log(id+" "+ ojName);
+            var url;
+            if(ojName == "codeforces")
+            {
+                url = "http://codeforces.com/problemset/problem/";
+                var set = id.substring(0, len-1);
+                var no = id.substring(len-1, len);
+                url+=set+"/"+no; 
+                console.log(url);
+                
+
+            }
+            else if(ojName == "SPOJ")
+            {
+                url = "http://www.spoj.com/problems/";
+                url = url + id +"/";     
+             
+            }
+              var row = document.getElementsByTagName('tr')[num];
+                var columnNum = row.cells.length;
+                var cell = row.cells.item(columnNum-1);
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) 
+                {
+                  
+                           
+                      
+                        cell.innerHTML = this.responseText;
+                        
+                        //document.getElementById(parId).innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "problemName.php?url="+url, true);
+            xhttp.send();   
+            
+           // document.getElementById("warning_msg").innerHTML = response;
+                
+        }
+
+        
+        
+       
+        </script>
+                    <!--<a href="signup.php" class="button">SIGN UP</a>-->
+                    <br>Click here to <a href="http://localhost/CSEDUOJ-ProbablyFinal/login.php">Log In</a>        
+        
+</body></html>

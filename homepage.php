@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <title>Home</title>
+<link rel="icon" type="image/gif" href="logo.png" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="w3.css">
@@ -51,30 +52,66 @@ body {font-family: "Lato", sans-serif}
   <a href="#" class="w3-bar-item w3-button w3-padding-large">MERCH</a>
 </div>
 
-<!-- Page content -->
-<div class="w3-content" style="max-width:2000px;margin-top:46px">
-
+<div class="w3-content" style="max-width:2000px;margin-top:40px">
   <!-- Automatic Slideshow Images -->
+  
+  <img src="logo.png" style="width:7%; height: 100px; float:left">
+  <img src="header.png" style="height:100px; float:left">
+  <img src="icon2.jpg" style=" width: 10% ;height:100px; float:right">
   <div class="mySlides w3-display-container w3-center">
-    <img src="/w3images/la.jpg" style="width:100%">
+      <img src="wf1.jpg" style="width:100%; height: 700px">
     <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-      <h3>Los Angeles</h3>
-      <p><b>We had the best time playing at Venice Beach!</b></p>   
+      <h3>World Finalists of CSEDU</h3>
     </div>
   </div>
   <div class="mySlides w3-display-container w3-center">
-    <img src="/w3images/ny.jpg" style="width:100%">
+      <img src="wf2.jpg" style="width:100%; height: 700px">
     <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-      <h3>New York</h3>
-      <p><b>The atmosphere in New York is lorem ipsum.</b></p>    
+      <h3>World Finalists of CSEDU</h3>
     </div>
   </div>
   <div class="mySlides w3-display-container w3-center">
-    <img src="/w3images/chicago.jpg" style="width:100%">
+    <img src="wf3.jpg" style="width:100% ; height: 700px">
     <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-      <h3>Chicago</h3>
-      <p><b>Thank you, Chicago - A night we won't forget.</b></p>    
+      <h3>World Finalists of CSEDU</h3>
     </div>
+  </div>
+      <div class="mySlides w3-display-container w3-center">
+          <img src="resonance.jpg" style="width:100% ; height: 700px">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <h3>DU Resonance</h3>
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+      <img src="contest.jpg" style="width:100%; height: 700px">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <h3>Battle of Brains</h3>
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="contest7.jpg" style="width:100%; height: 700px">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <h3>Battle of Brains</h3>
+    </div>
+  </div>
+   <div class="mySlides w3-display-container w3-center">
+      <img src="contest1.jpg" style="width:100%; height: 700px">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <h3>Battle of Brains</h3>  
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+      <img src="contest5.jpg" style="width:100%; height: 700px">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <h3>Battle of Brains</h3>
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="contest6.jpg" style="width:100%; height: 700px">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+
+    </div>
+  </div>
   </div>
 
   <!-- The Band Section -->

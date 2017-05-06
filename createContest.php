@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/gif" href="logo.png" />
 <meta charset="utf-8">
 <link rel="stylesheet" href="addProblem.css">
 <link rel="stylesheet" href="w3.css">
@@ -10,6 +11,9 @@
 </head>
 <body>
     <style>
+        body{
+            background-image: url("register_msg.jpg");
+        }
     input[type=date] {
     width: 20%;
     margin: 5px 5px;
@@ -70,6 +74,7 @@ select{
         
 <?php
 require('database.php');
+session_start();
 global $con;
 if (isset($_REQUEST['contestTitle'])){
 	$contestTitle = stripslashes($_REQUEST['contestTitle']);
@@ -140,8 +145,8 @@ if (isset($_REQUEST['contestTitle'])){
                 if($count == 0)
                     break;
         } 
-       
-        $query = "INSERT into contests (contestTitle,contestId, contestStartDate,contestStartTime,contestDuration, contestEndDate, contestEndTime, contestDescription, contestAnnouncements,contestStatus) VALUES ('$contestTitle','$contestId','$contestStartDate','$contestStartTime', '$contestDuration','$contestEndDate','$contestEndTime', '$contestDescription', '$contestAnnouncements','$contestStatus')";
+        $setterId = $_SESSION['id'];
+        $query = "INSERT into contests (contestTitle,contestId, contestStartDate,contestStartTime,contestDuration, contestEndDate, contestEndTime, contestDescription, contestAnnouncements,contestStatus, setterId) VALUES ('$contestTitle','$contestId','$contestStartDate','$contestStartTime', '$contestDuration','$contestEndDate','$contestEndTime', '$contestDescription', '$contestAnnouncements','$contestStatus', '$setterId')";
         $result = mysqli_query($con,$query);
         
         if($result)
@@ -201,28 +206,53 @@ if (isset($_REQUEST['contestTitle'])){
             <h3>Add problems</h3>
             <input type="button" value="Add problem" onClick="addRow()"/>
             <input type="button" value="Delete Problem" onClick="deleteRow()"/>
+            <p id ="msg" />
             <script>
               function addRow()
               {
                    
                   var table = document.getElementById("problemList");
-
                   var len = table.rows.length;
-                   var row = table.insertRow(len);
-                    console.log(len);
+                   console.log(len);
+                 
+                      
+                  if(len==26)
+                  {
+                     
+                      var msg = document.getElementById("msg");
+                      msg.innerHTML = "*You cannot add more than 26 problems";
+                  }
+                  else
+                  {
+                     var msg = document.getElementById("msg");
+                     msg.innerHTML = "";
+                     var row = table.insertRow(len);
+                   
                     var oj = row.insertCell(0);
                     var probId = row.insertCell(1);
                     var probName = row.insertCell(2);
                     var probTitle = row.insertCell(3);
                     oj.innerHTML = '<select id="oj" name="oj[]" style="width:120px;"><option value="SPOJ">SPOJ</option><option value="codeforces">Codeforces</option></select>';
-                    probId.innerHTML = ' <input id="probId" type="text" style="width:120px;" name="probId[]" onkeyup="crawler()" >';
+                    probId.innerHTML = ' <input id="probId" type="text" style="width:120px;" placeholder="Problem Id" name="probId[]" onkeyup="crawler('+len+')" >';
                     probName.innerHTML = '<input type="text" style="width:120px;" name="probName[]">';
-                   probTitle.innerHTML = '<p id="probTitle">';
+                    probTitle.innerHTML = '';
+                 }
                 }
                 function deleteRow()
                 {
                     len = document.getElementById("problemList").rows.length;
+                    console.log(len);
+                    if(len == 1)
+                    {
+                       
+                         var msg = document.getElementById("msg");
+                         msg.innerHTML = "*You have to add atleast one problem.";
+                    }
+                    else{
+                           var msg = document.getElementById("msg");
+                     msg.innerHTML = "";
                      document.getElementById("problemList").deleteRow(len-1);
+                 }
                 }
                 </script>
                 <table id="problemList">
@@ -231,15 +261,16 @@ if (isset($_REQUEST['contestTitle'])){
                          <select id="oj" name="oj[]" style="width:120px;"><option value="SPOJ">SPOJ</option><option value="codeforces">Codeforces</option></select>
                     </td>
                     <td>
-                        <input id="probId" type="text" style="width:120px;" name="probId[]"  >
+                        <input id="probId" type="text" style="width:120px;" placeholder="Problem Id" name="probId[]" onkeyup="crawler(0)">
                     </td>
                     <td>
-                        <input type="text" style="width:120px;" name="probName[]">
+                        <input type="text" style="width:120px;"  name="probName[]">
                     </td>
                     <td>
-                        <p id="probTitle" >
+                     
                     </td>
                 </tr>
+                
             </table>
             <h3></h3>
             <br><input type="submit" name="submit" value="Submit" /> 
@@ -248,15 +279,18 @@ if (isset($_REQUEST['contestTitle'])){
 
     <script>
        
-        function crawler()
+        function crawler(num)
         {
-            var p = document.getElementById("probId").value;
+             var serials = ['','A','B', 'C','D', 'E','F', 'G','H', 'I','J', 'K','L', 'M','N', 'O','P', 'Q','R','S', 'T', 'U','V', 'W', 'X','Y', 'Z'];   
+            var p = document.getElementsByName('probId[]')[num].value;
             var id = p.toString();
             var len = id.length;
-            var oj = document.getElementById("oj").value;
+            var oj = document.getElementsByName("oj[]")[num].value;
             var ojName = oj.toString();
+            var title = document.getElementsByName("probName[]")[num];
+            
+            
             console.log(id+" "+ ojName);
-
             var url;
             if(ojName == "codeforces")
             {
@@ -265,75 +299,40 @@ if (isset($_REQUEST['contestTitle'])){
                 var no = id.substring(len-1, len);
                 url+=set+"/"+no; 
                 console.log(url);
-                makeCorsRequest(url);
                 
 
             }
             else if(ojName == "SPOJ")
             {
-                url = "spoj.com";
-
+                url = "http://www.spoj.com/problems/";
+                url = url + id +"/";     
+             
             }
-
-
-
+              var row = document.getElementsByTagName('tr')[num];
+                var columnNum = row.cells.length;
+                var cell = row.cells.item(columnNum-1);
+                xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) 
+                {
+                  
+                           
+                        
+                        cell.innerHTML = serials[num+1]+" "+ this.responseText;
+                        title.value = this.responseText;
+                        //document.getElementById(parId).innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "problemName.php?url="+url, true);
+            xhttp.send();   
+            
            // document.getElementById("warning_msg").innerHTML = response;
                 
         }
 
         
         
-        // Create the XHR object.
-        function createCORSRequest(method, url) {
-          var xhr = new XMLHttpRequest();
-          if ("withCredentials" in xhr) {
-            // XHR for Chrome/Firefox/Opera/Safari.
-            xhr.open(method, url, true);
-          } else if (typeof XDomainRequest != "undefined") {
-            // XDomainRequest for IE.
-            xhr = new XDomainRequest();
-            xhr.open(method, url);
-          } else {
-            // CORS not supported.
-            console.log("not supported");
-            xhr = null;
-          }
-          return xhr;
-        }
-
-        // Helper method to parse the title tag from the response.
-        function getTitle(text) {
-
-                return response.match(/ <div class="header"><div class="title"> []</div>/);
-           
-        }
-
-        // Make the actual CORS request.
-        function makeCorsRequest(url) {
-          // This is a sample server that supports CORS.
-         //var url = 'http://codeforces.com';
-
-          var xhr = createCORSRequest('GET', url);
-          if (!xhr) {
-            alert('CORS not supported');
-            return;
-          }
-
-          // Response handlers.
-          xhr.onload = function() {
-            var text = xhr.responseText;
-            console.log("The text is : " + getTitle(text));
-            //var title = getTitle(text);
-            //console.log("Title is : " + title);
-            //alert('Response from CORS request to ' + url + ': ' + title);
-          };
-
-          xhr.onerror = function() {
-            //alert('Woops, there was an error making the request.');
-          };
-
-          xhr.send();
-        }
+       
         </script>
                     <!--<a href="signup.php" class="button">SIGN UP</a>-->
                     <?php 

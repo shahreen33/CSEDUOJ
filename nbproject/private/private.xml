@@ -5,14 +5,18 @@
         <group>
             <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/homepage.php</file>
             <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/font-awesome.css</file>
-            <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/index.php</file>
-            <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/register.php</file>
+            <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/register.css</file>
             <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/database.php</file>
             <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/login.php</file>
             <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/logout.php</file>
-            <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/w3.css</file>
             <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/authorize.php</file>
             <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/latin.css</file>
+            <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/addProblem.css</file>
+            <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/index.php</file>
+            <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/register.php</file>
+            <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/showContest.php</file>
+            <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/w3.css</file>
+            <file>file:/C:/xampp/htdocs/CSEDUOJ-ProbablyFinal/createContest.php</file>
         </group>
     </open-files>
 </project-private>

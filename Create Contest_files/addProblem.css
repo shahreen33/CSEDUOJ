@@ -2,19 +2,29 @@ body {
    background-image: url("back.jpg");
 }
 h1 {
-    color: black ;
+    color: #757575  ;
     font-family: verdana;
     font-size: 80px;
 }
 h2 {
-    color: black ;
+    color: #757575 ;
     font-family: verdana;
     font-size: 30px;
 }
 input[type=text] {
     width: 20%;
     margin: 5px 5px;
-    box-sizing: w3-round;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    background-color: white;
+    background-position: 360px 2px;
+    background-repeat: no-repeat;
+    padding: 10px 15px 10px 15px;
+}
+input[type=datetime-local] {
+    width: 100%;
+    margin: 5px 5px;
     border-radius: 4px;
     border: 2px solid #ccc;
     font-size: 16px;
@@ -63,7 +73,7 @@ input[type=password] {
     cursor: pointer;
 }
 input[type=submit] {
-    background-color: black;
+    background-color: #4CAF50;
     border: none;
     color: white;
     padding: 10px 15px;
@@ -73,4 +83,22 @@ input[type=submit] {
     font-size: 16px;
     margin: 4px 8px;
     cursor: pointer;
+}
+
+.custom-select {
+    display: inline-block;
+    width: 100%;
+    margin: 5px 5px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    background-color: white;
+    background-position: 360px 2px;
+    background-repeat: no-repeat;
+    padding: 10px 15px 10px 15px;
+    color: #55595c;
+    vertical-align: middle;
+    background-size: 8px 10px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
 }
