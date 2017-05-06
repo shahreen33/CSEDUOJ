@@ -7,8 +7,8 @@ def login(login_url, name, password):
     start_session(login_url, name, password)
 
 def start_session(login_url, username, password):
-    #print ('Verifying....')
-    global session, user
+        #print ('Verifying....')
+        global session, user
         user = username
         with requests.Session() as session:
             payload = {
@@ -20,11 +20,11 @@ def start_session(login_url, username, password):
             html = r.text
             html.encode('utf-8')
             soup = BeautifulSoup(html, 'html.parser')
-            
+
             '''Check for the authentication of the user. After the login is successful, the problems submitted by the user and the todo
-                problems are stored in submitted_problems and todo_problems respectively which are a list of tuples storing in format
-                (problem, problem_status_by_user_link).
-                '''
+                  problems are stored in submitted_problems and todo_problems respectively which are a list of tuples storing in format
+                  (problem, problem_status_by_user_link).
+            '''
             #print soup
             for auth in soup.find_all('h3'):
                 if (auth.get_text() == 'Authentication failed!'):
@@ -61,16 +61,16 @@ def submit_solution(name, lang, filepath):
             sub_id = re.search(r'"newSubmissionId" value="(\d+)"/>', r.text).group(1)
         except AttributeError:
             print ('Wrong ProblemCode!Enter Again!')
-        #star()
+            #star()
         except IOError:
             print ("FilePath is not valid!Enter Again!")
-        #star()
+            #star()
         else:
             break
 
-'''while (True):
-    if (my_status(url + '/status/' + name + ',' + user + '/', check = True)):
-    break
+    '''while (True):
+        if (my_status(url + '/status/' + name + ',' + user + '/', check = True)):
+            break
     my_status(url + '/status/' + name + ',' + user + '/')
     '''
 
@@ -78,7 +78,7 @@ def main():
     print "Hello everybody"
     global url
     url = "http://www.spoj.com"
-    # print ('\t\t\t\t\t\t\tFull Screen Recommended')
+   # print ('\t\t\t\t\t\t\tFull Screen Recommended')
     login(url + '/login', 'tanzir_5', 'tanzir.5')
     submit_solution('QTREE', 'C++', 'yo.cpp')
 
