@@ -1,5 +1,6 @@
-
-
 <?php
-    echo "Hello everyone";
+    $item='example';
+    $tmp = exec("python simple.py .$item");
+    echo $tmp;
+
 ?>
