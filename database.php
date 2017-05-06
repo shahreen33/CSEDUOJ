@@ -1,7 +1,7 @@
 <?php
 
 global $con;
-$con= mysqli_connect("localhost","root","","CSEDUOJ");
+$con= mysqli_connect("localhost","cseduoj","cseduoj","cseduoj");
 // Check connection
 if (mysqli_connect_errno())
   {
