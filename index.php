@@ -166,6 +166,7 @@ body {font-family: "Lato", sans-serif}
         }
 </style>
     <?php
+    error_reporting(E_ERROR | E_PARSE);
     require 'database.php';
     require 'authorize.php';
   
