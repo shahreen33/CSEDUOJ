@@ -11,6 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+        error_reporting(E_ERROR | E_PARSE);
         function submit($OJ, $problemID, $fileName, $language)
         {
             

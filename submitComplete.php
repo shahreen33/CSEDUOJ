@@ -16,7 +16,7 @@
         </style>
        <img src="other.png" style="width: 100%">
 <?php
-
+error_reporting(E_ERROR | E_PARSE);
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates

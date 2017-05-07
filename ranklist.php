@@ -173,6 +173,7 @@ body {font-family: "Lato", sans-serif}
      
             
 <?php
+error_reporting(E_ERROR | E_PARSE);
 require('database.php');
 include('problem.php');
 include 'contestant.php';

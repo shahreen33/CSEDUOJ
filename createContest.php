@@ -73,7 +73,7 @@ select{
     </style>
           <img src="other.png" style="width: 100%">
 <?php
-
+error_reporting(E_ERROR | E_PARSE);
 require('database.php');
 session_start();
 global $con;

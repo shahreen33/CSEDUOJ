@@ -148,6 +148,7 @@ body {
   
     
     <?php
+    error_reporting(E_ERROR | E_PARSE);
     require 'database.php';
       session_start(); 
       global $con;

@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ERROR | E_PARSE);
 global $con;
 $con= mysqli_connect("localhost","cseduoj","cseduoj","cseduoj");
 // Check connection

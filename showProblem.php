@@ -144,6 +144,7 @@ select{
     </style>
          <img src="other.png" style="width: 100%">
 <?php
+error_reporting(E_ERROR | E_PARSE);
 require('database.php');
 include('problem.php');
 session_start();

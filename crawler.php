@@ -1,4 +1,5 @@
 <?php
+    error_reporting(E_ERROR | E_PARSE);
     function crawl($URL)
     {
         if(strlen($URL)==0)
