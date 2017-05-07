@@ -54,14 +54,14 @@ def submit_solution(name, language, filepath):
             #errorLog.write ("FilePath is not valid!Enter Again!\n")
             return
         time.sleep(1)
-        my_status(url + '/status/' + name + ',' + user + '/', check=True)
+        #my_status(url + '/status/' + name + ',' + user + '/', check=True)
         '''while (True):
             if (my_status(url + '/status/' + name + ',' + user + '/', check = True)):
                 break
             my_status(url + '/status/' + name + ',' + user + '/')
         '''
 
-def my_status(link, check=False, accepted=False):
+'''def my_status(link, check=False, accepted=False):
     r = session.get(link)
     html = r.text.encode('utf-8').replace('</td></td>', '</td>')
     soup = BeautifulSoup(html, 'html.parser')
@@ -82,7 +82,7 @@ def my_status(link, check=False, accepted=False):
             return my_status(link, check)
         global verdict
         verdict = status
-
+'''
 def main():
     '''
     argv[1] is problem code/number
