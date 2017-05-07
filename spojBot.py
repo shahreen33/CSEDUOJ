@@ -6,7 +6,7 @@ import time
 from bs4 import BeautifulSoup
 
 verdict = "Submission Failed"
-errorLog = open('errorLog.txt', 'a')
+#errorLog = open('errorLog.txt', 'a')
 def login(login_url, name, password):
     return start_session(login_url, name, password)
 
@@ -90,7 +90,8 @@ def main():
     argv[3] is language
     :return: 
     '''
-    problemCode = sys.argv[1]
+    print 'fine'
+    '''problemCode = sys.argv[1]
     filename = sys.argv[2]
     language = sys.argv[3]
     #print "Hello everybody"
@@ -102,7 +103,7 @@ def main():
 
    # print ('\t\t\t\t\t\t\tFull Screen Recommended')
     if(login(url + '/login', 'cseduoj1', '123456') == True):
-        print "OK" #submit_solution(problemCode, language, filename)
-    #print verdict
+        submit_solution(problemCode, language, filename)
+    print verdict'''
 if __name__ == '__main__':
     main()
