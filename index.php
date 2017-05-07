@@ -11,10 +11,11 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        echo "jai hok";
-        $item='example';
+        $item1='QTREE';
+        $item2='code.txt';
+        $item3='6';
         //$tmp = exec("python login-submit.py");
-        $tmp = exec("python login-submit.py");
+        $tmp = exec("python spojBot.py ".$item1." ".$item2." ".$item3);
         
         echo $tmp;
 
