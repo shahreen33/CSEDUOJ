@@ -54,35 +54,34 @@ def submit_solution(name, language, filepath):
             #errorLog.write ("FilePath is not valid!Enter Again!\n")
             return
         time.sleep(1)
-        #my_status(url + '/status/' + name + ',' + user + '/', check=True)
+        getVerdict(url + '/status/' + name + ',' + user + '/')
         '''while (True):
             if (my_status(url + '/status/' + name + ',' + user + '/', check = True)):
                 break
             my_status(url + '/status/' + name + ',' + user + '/')
         '''
 
-'''def my_status(link, check=False, accepted=False):
+def getVerdict(link):
     r = session.get(link)
     html = r.text.encode('utf-8').replace('</td></td>', '</td>')
     soup = BeautifulSoup(html, 'html.parser')
 
     rows = soup.find('table', {'class': 'problems'}).findAll('tr')
-    if (check):
-        col = rows[1].find_all('td')
+    col = rows[1].find_all('td')
 
-        status = col[4].text.replace('edit', ' ').replace('ideone it', ' ').strip()
-        if(status.startswith('waiting')):
-            time.sleep(1)
-            return my_status(link, check)
-        elif(status.startswith('compiling')):
-            time.sleep(1)
-            return my_status(link,check)
-        elif(status.startswith('running')):
-            time.sleep(3)
-            return my_status(link, check)
-        global verdict
-        verdict = status
-'''
+    status = col[4].text.replace('edit', ' ').replace('ideone it', ' ').strip()
+    if(status.startswith('waiting')):
+        time.sleep(1)
+        return getVerdict(link)
+    elif(status.startswith('compiling')):
+        time.sleep(1)
+        return getVerdict(link)
+    elif(status.startswith('running')):
+        time.sleep(3)
+        return getVerdict(link)
+    global verdict
+    verdict = status
+
 def main():
     '''
     argv[1] is problem code/number
