@@ -11,7 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        echo "Hello<br>"
+        echo "Hello<br>";
         $item1='QTREE';
         $item2='code.txt';
         $item3='6';
