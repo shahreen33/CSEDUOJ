@@ -11,16 +11,13 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        echo "Hello<br>";
-        $item1='QTREE';
-        $item2='code.txt';
-        $item3='6';
+        include 'submitter.php';
+
+
+        echo "Hello now<br>";
         //$tmp = exec("python simple.py");
-        $tmp = exec("python spojBot.py ".$item1." ".$item2." ".$item3);
-        if($tmp == false)
-            echo "Error";
-        else
-            echo $tmp;
+        $tmp = submit("spoj", "QTREE", "code.txt", "6");
+        echo $tmp;
 
     ?>
     </body>
