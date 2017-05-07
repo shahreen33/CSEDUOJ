@@ -6,7 +6,7 @@ import time
 from bs4 import BeautifulSoup
 
 verdict = "Submission Failed"
-#errorLog = open('errorLog.txt', 'a')
+errorLog = open('errorLog.txt', 'a')
 def login(login_url, name, password):
     return start_session(login_url, name, password)
 
