@@ -102,7 +102,7 @@ def main():
 
    # print ('\t\t\t\t\t\t\tFull Screen Recommended')
     if(login(url + '/login', 'cseduoj1', '123456') == True):
-        submit_solution(problemCode, language, filename)
-    print verdict
+        print "OK" #submit_solution(problemCode, language, filename)
+    #print verdict
 if __name__ == '__main__':
     main()
