@@ -13,16 +13,16 @@ and open the template in the editor.
         <?php
         function submit($OJ, $problemID, $fileName, $language)
         {
+            
             if($OJ == 'spoj')
                 $bot = "spojBot.py";
             else if($OJ == 'codeforces')
                 $bot = "codeforcesBot.py";
             $command = "python ".$bot." ".$problemID." ".$fileName." ".$language;
-
             $verdict = exec($command);
             if($verdict == false)
-                $verdict = "Submission Failed";
-
+                $verdict = "PHEWSubmission Failed";
+            
             return $verdict;
         }
     ?>

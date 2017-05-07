@@ -17,9 +17,10 @@
 </head>
 
 <body>
-  
+   <img src="other.png" style="width: 100%">
 <?php
 require('database.php');
+include 'SendEmail.php';
 global $con;
 if (isset($_REQUEST['name'])){
 	$name = stripslashes($_REQUEST['name']);
@@ -34,13 +35,18 @@ if (isset($_REQUEST['name'])){
         $password = sha1($password);
         
         $responses = "show_responses.php";
-        $query = "INSERT into users (name,id, email, password) VALUES ('$name','$id', '$email', '$password')";
+        $query = "INSERT into users (name,id, email, password, verified) VALUES ('$name','$id', '$email', '$password','0')";
         $result = mysqli_query($con,$query);
         if($result){
        
                 echo "<div class='form'>
                 <h2>Registration Successful</h2>
-                <br/>Or Click here to <a href='index.php'>Log In</a></div>";
+                <h2>An email has been sent to your profile. Please click the link in the email to verify your account.<h2>
+                <br/>Click here to <a href='index.php'>Log In</a></div>";
+                
+                $emailSender = new SendEmail();
+                $emailSender->sendVerificationBySwift($email, $name, $id);
+                
         
      }
       else
@@ -49,7 +55,7 @@ if (isset($_REQUEST['name'])){
                         <h2>There has been a problem!</h2>
                         <br/>ID is already in use. </div>";
    
-                echo "<br/>Click here to <a href='index.php'>submit again</a></div>";
+                echo "<br/>Click here to <a href='index.php'>register again</a></div>";
        }
 }
 

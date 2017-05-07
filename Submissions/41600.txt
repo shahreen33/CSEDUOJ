@@ -1,0 +1,144 @@
+/*
+The Great Template of Salazar Slytherin
+*/
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+#define rep(i,n) for(i=0; i<n; i++)
+#define repl(i,n) for(i=1; i<=n; i++)
+ 
+#define sz(x) (int) x.size()
+#define pb  push_back
+#define all(x) x.begin(),x.end()
+#define uu first
+#define vv second
+#define mem(x, y) memset(x, y, sizeof(x))
+ 
+#define sdi(x) scanf("%d", &x)
+#define sdii(x, y) scanf("%d %d", &x, &y)
+#define sdiii(x, y, z) scanf("%d %d %d", &x, &y, &z)
+#define sdl(x) scanf("%lld", &x)
+#define sdll(x, y) scanf("%lld %lld", &x, &y)
+#define sdlll(x, y, z) scanf("%lld %lld %lld", &x, &y, &z)
+#define sds(x) scanf("%s", x)
+#define pfi(x) printf("%d\n", x)
+#define pfii(x, y) printf("%d %d\n", x, y)
+#define pfiii(x, y, z) printf("%d %d %d\n", x, y, z)
+#define pfl(x) printf("%lld\n", x)
+#define pfll(x, y) printf("%lld %lld\n", x, y)
+#define pflll(x, y, z) printf("%lld %lld %lld\n", x, y, z)
+ 
+#define eps 1e-9
+#define OK cerr << "ok" << endl
+#define DB(x) cerr << #x << " = " << x << endl;
+ 
+/// Tanzir
+#define FRE(i,a,b)  for(i = a; i <= b; i++)
+#define FRL(i,a,b)  for(i = a; i < b; i++)
+#define un(x)       x.erase(unique(all(x)), x.end())
+#define sf(n)       scanf("%d", &n)
+#define sff(a,b)    scanf("%d %d", &a, &b)
+#define sfff(a,b,c) scanf("%d %d %d", &a, &b, &c)
+#define sl(n)       scanf("%lld", &n)
+#define sll(a,b)    scanf("%lld %lld", &a, &b)
+#define slll(a,b,c) scanf("%lld %lld %lld", &a, &b, &c)
+#define D(x)        cerr<<#x " = "<<(x)<<endl
+#define DBG         cerr << "Hi" << endl
+#define PI          acos(-1.00)
+#define xx          first
+#define yy          second
+ 
+typedef double db;
+typedef long long LL;
+typedef unsigned long long ULL;
+typedef pair <int, int> pii;
+typedef pair <long long , long long > pll;
+ 
+inline int setBit(int N, int pos) { return N=N | (1<<pos); }
+inline int resetBit(int N, int pos) { return N= N & ~(1<<pos); }
+inline bool checkBit(int N, int pos) { return (bool)(N & (1<<pos)); }
+ 
+//int kx[] = {+2, +1, -1, -2, -2, -1, +1, +2};
+//int ky[] = {+1, +2, +2, +1, -1, -2, -2, -1}; //Knight Direction
+//int fx[] = {+0, +0, +1, -1, -1, +1, -1, +1};
+//int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1}; //Four & Eight Direction
+ 
+LL dp[1010][1010];
+int path[1010][1010], A[1010];
+LL call(int i, int j)
+{
+    if(i+1 == j || i == j)
+    {
+        dp[i][j] = 0;
+        path[i][j] = i;
+        return 0;
+    }
+    if(dp[i][j] != -1)
+        return dp[i][j];
+    call(i+1,j);
+    call(i,j-1);
+    int lft = path[i][j-1];
+    int rght = path[i+1][j];
+ 
+    LL ret = 1e15;
+    for(int k = lft; k<=rght; k++)
+    {
+        if(k == i || k == j)
+            continue;
+        LL tmp = call(i,k) + call(k, j) + A[j] - A[i] ;
+//        if(i == 1 && j == 5)
+//            D(k),D(tmp);
+        if(tmp < ret)
+        {
+            ret = tmp;
+            path[i][j] = k;
+        }
+    }
+    return dp[i][j] = ret;
+}
+ 
+//LL call2(int i, int j)
+//{
+//    if(i+1 == j || i == j)
+//    {
+//        dp[i][j] = 0;
+//        path[i][j] = i;
+//        return 0;
+//    }
+//    if(dp[i][j] != -1)
+//        return dp[i][j];
+//    LL ret = 1e15;
+//    for(int k = i+1; k<j; k++)
+//    {
+//        LL tmp = call(i,k) + call(k, j) + A[j] - A[i] ;
+//        if(tmp < ret)
+//        {
+//            ret = tmp;
+//            path[i][j] = k;
+//        }
+//    }
+//    return dp[i][j] = ret;
+//}
+ 
+int main()
+{
+//    freopen("in.txt","r",stdin);
+//    freopen("out.txt","w",stdout);
+    int i, j, cs, t, n, m;
+    while(sff(n,m) == 2)
+    {
+        mem(dp,-1);
+        m++;
+        for(i = 2;  i<=m; i++)
+            sf(A[i]), A[i]++;
+        m++;
+        A[1] = 1;
+        A[m] = n+1;
+        printf("%lld\n",call(1,m));
+//        D(path[1][m]);
+//        D(go(path[1][m]));
+    }
+    return 0;
+}
+ 

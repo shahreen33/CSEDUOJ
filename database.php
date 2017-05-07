@@ -13,6 +13,7 @@ if (mysqli_connect_errno())
                 "id VARCHAR( 128 ) NOT NULL ,".
                 "email VARCHAR( 128 ) NOT NULL ,".
                 "password VARCHAR( 128 ) NOT NULL ,".
+                "verified CHAR(1) NOT NULL,".
                 "PRIMARY KEY (id)".
                 ")";
                 
@@ -60,6 +61,24 @@ if (mysqli_connect_errno())
                 "solvecount INT NOT NULL DEFAULT '0', ".
                 "PRIMARY KEY (contestId, problemIdMod),".
                 "FOREIGN KEY (contestId) REFERENCES contests(contestId),".
+                "FOREIGN KEY (problemIdMod) REFERENCES problemlist(problemIdMod)".
+                ")";
+          if(!mysqli_query($con, $qry))
+        {
+            $this->HandleDBError("Error creating the table \nquery was\n $qry");
+        }
+        
+        $qry = "CREATE TABLE If Not Exists contest_submission(".
+                "userId VARCHAR( 128 ) NOT NULL,".
+                "contestId INT NOT NULL ,". 
+                "problemIdMod VARCHAR( 128 ) NOT NULL,".
+                "submissionId INT NOT NULL,".
+                "serial CHAR(1) NOT NULL,".
+                "verdict VARCHAR( 128 ) NOT NULL,".
+                "submissionTime VARCHAR(128) NOT NULL,".
+                "PRIMARY KEY (submissionId),".
+                "FOREIGN KEY (contestId) REFERENCES contests(contestId),".
+                "FOREIGN KEY (userId) REFERENCES users(id),".
                 "FOREIGN KEY (problemIdMod) REFERENCES problemlist(problemIdMod)".
                 ")";
           if(!mysqli_query($con, $qry))

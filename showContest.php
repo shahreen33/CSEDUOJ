@@ -58,6 +58,90 @@ body {
  transform: translateX(-100%); 
  }
 }
+.scrolltable {
+            
+            overflow-x: scroll;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            display: -webkit-flex;
+            flex-direction: column;
+            -webkit-flex-direction: column;
+        }
+        .scrolltable > .header {
+        }
+        .scrolltable > .body {
+            /*noinspection CssInvalidPropertyValue*/
+            width: -webkit-fit-content;
+           
+            flex: 1;
+            -webkit-flex: 1;
+        }
+
+        th{
+            width: 300px;
+        }
+        td{
+            width:300px;
+        }
+
+        /* an outside constraint to react against */
+        #constrainer {
+            margin:0 auto;
+            width: 1000px;
+            height: 500px;
+        }
+
+
+
+
+
+
+
+
+        #constrainer2 {
+            width: 400px;
+            overflow-x: scroll;
+        }
+        #constrainer2 table {
+            overflow-y: scroll;
+        }
+        #constrainer2 tbody {
+            overflow-x: scroll;
+            display: block;
+            height: 200px;
+        }
+        #constrainer2 thead {
+            display: table-row;
+        }
+
+
+
+
+        /* only styling below here */
+        #constrainer, #constrainer2 {
+            border: 1px solid lightgrey;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid gray;
+        }
+        th {
+            background-color: lightgrey;
+            border-width: 1px;
+        }
+        td {
+            border-width: 1px;
+        }
+        tr:first-child td {
+            border-top-width: 0;
+        }
+        tr:nth-child(even) {
+            background-color: #eee;
+        }
+
 </style>
 
 
@@ -105,7 +189,7 @@ body {
 <div class="w3-padding-64 w3-center w3-opacity w3-white">
 
     <?php
-        
+           date_default_timezone_set('Asia/Bangkok');
         $contestId = $_GET['contestId'];
         $query = "SELECT * from contests WHERE contestId='$contestId'";
         $result = mysqli_query($con, $query);
@@ -126,6 +210,32 @@ body {
             $contestAnnouncements= $rows['contestAnnouncements'];
             
             $contestStatus = $rows['contestStatus'];
+            $datetime = date_create($contestStartDate." ".$contestStartTime);
+            $fdatetime = date_format($datetime, "Y-m-d H:i:s");
+            $datetime = date_create($fdatetime);
+
+            $startTimestamp = $datetime->getTimestamp();
+            
+             $datetime = date_create($contestEndDate." ".$contestEndTime);
+            $fdatetime = date_format($datetime, "Y-m-d H:i:s");
+            $datetime = date_create($fdatetime);
+             $endTimestamp = $datetime->getTimestamp();
+            if(time()-3600 > $startTimestamp && time()-3600 <$endTimestamp)
+            {
+                 $contestStatus = '1';
+                  $query = "UPDATE contests SET contestStatus = '1' WHERE contestId='$contestId'";
+                  $res = mysqli_query($con, $query);
+                  
+            }
+            
+           
+            if(time()-3600 > $endTimestamp)
+            {
+                  $contestStatus = '2';
+                  $query = "UPDATE contests SET contestStatus = '2' WHERE contestId='$contestId'";
+                  $res = mysqli_query($con, $query);
+                  
+            }
             if($contestStatus == "0")
             {
                $contestStatus = "Not started yet.";
@@ -235,7 +345,7 @@ var x = setInterval(function() {
      <button class="w3-bar-item w3-button w3-large" onclick="openPage('Overview')">Overview</button>
      <button class="w3-bar-item w3-button w3-large" onclick="openPage('Problem')">Problem</button>
      <button class="w3-bar-item w3-button w3-large" onclick="openPage('Status')">Status</button>
-     <button class="w3-bar-item w3-button w3-large" onclick="openPage('Rank')">Rank</button>
+     <button class="w3-bar-item w3-button w3-large" onclick="openWindow(<?php echo $_GET['contestId']?>)">Rank</button>
     </div>
     
     <div id="Overview" class="page">
@@ -243,7 +353,7 @@ var x = setInterval(function() {
             
             include 'getSerial.php';
             date_default_timezone_set('Asia/Bangkok');
-        $contestId = $_GET['contestId'];
+            $contestId = $_GET['contestId'];
         
         $query = "SELECT * from contests WHERE contestId='$contestId'";
         $result = mysqli_query($con, $query);
@@ -258,7 +368,7 @@ var x = setInterval(function() {
             $setterId = $rows['setterId'];
         } 
         $datetime = date_create($contestStartDate." ".$contestStartTime);
-        $fdatetime = date_format($datetime, "Y-m-d h:i:s");
+        $fdatetime = date_format($datetime, "Y-m-d H:i:s");
         $datetime = date_create($fdatetime);
        
         $timestamp = $datetime->getTimestamp();
@@ -282,6 +392,7 @@ var x = setInterval(function() {
                  $res = mysqli_query($con, $query);
                  $info = mysqli_fetch_array($res);
                  $problems[$i][2] = $info['problemName'];
+                 $problems[$i][3] = $temp;
                  $i++;
                  
             }
@@ -302,10 +413,11 @@ var x = setInterval(function() {
                    ";
          for($i = 0; $i< $total; $i++)   
          {
+             $url = "showProblem.php?problemIdMod=".$problems[$i][3]."&contestId=".$contestId;
             echo "     <tr style='background-color:#1E90FF;'>
                         <td style='border: 1px solid #dddddd; text-align: left;padding: 8px'>".$problems[$i][0]."</td>
                         <td style='border: 1px solid #dddddd; text-align: left;padding: 8px'>".$problems[$i][1]."</td>
-                        <td style='border: 1px solid #dddddd; text-align: left;padding: 8px'>".$problems[$i][2]."</td>
+                        <td style='border: 1px solid #dddddd; text-align: left;padding: 8px'><a href='".$url."'>".$problems[$i][2]."</a></td>
                       </tr>";
                     
                     
@@ -332,35 +444,73 @@ var x = setInterval(function() {
  
     </div>
 
-<div id="Problem" class="page" style="display:none">
-   
- 
 
+
+<div id="Status" class="page" style="display:none">
+   <div id="constrainer" class="w3-center">
+                     <div class="scrolltable">
+                        <table class="header"><thead><th>Contest Id</th><th>Submission Id</th><th>User Id</th><th>#</th><th>Problem Id</th><th>Verdict</th><th>Submission Time</th></thead></table>
+                            <div class="body">
+                               <table>
+                                    <tbody>
+        <?php
+        $contestId = $_GET['contestId'];
+        $qry = "SELECT * from contest_submission WHERE contestId='$contestId'";
+        $result = mysqli_query($con, $qry);
+        if($result)
+        {
+            mysqli_fetch_all($result,MYSQLI_ASSOC);
+            $submissions= array();
+            $i = 0;
+            foreach($result as $rows)
+            {
+                $submissions[$i][0] = $rows['contestId'];
+                $submissions[$i][1] = $rows['submissionId'];
+                $submissions[$i][3] = $rows['serial'];
+                $submissions[$i][2] = $rows['userId'];
+                $submissions[$i][4] = $rows['problemIdMod'];
+                $submissions[$i][5] = $rows['verdict'];
+                $submissions[$i][6] = $rows['submissionTime'];
+                $i++;
+            }
+            $total = $i;
+        }
+      
+        for($i = 0; $i<$total; $i++)
+        {
+
+            echo '<tr><td>'.$submissions[$i][0].'</td><td>'.$submissions[$i][1].'</td><td>'.$submissions[$i][2].'</td><td>'.$submissions[$i][3].'</td><td>'.$submissions[$i][4].'</td><td>'.$submissions[$i][5].'</td><td>'.$submissions[$i][6].'</td></tr>';
+        }
+           ?>
+               </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-
-
-<div id="Status" class="page w3-animate-fading" style="display:none">
-  <h2>Tokyo</h2>
-  <p>Tokyo is the capital of Japan.</p>
 </div>
     
- <div id="Rank" class="page w3-animate-fading" style="display:none">
-  <h2>Tokyo</h2>
-  <p>Tokyo is the capital of Japan.</p>
+
+    
 </div>
-    <script>
-    function openPage(pageName) {
-    var i;
-    var x = document.getElementsByClassName("page");
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none"; 
+<script>
+    function openPage(pageName) 
+    {
+        var i;
+        var x = document.getElementsByClassName("page");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none"; 
+        }
+        console.log(document.getElementById(pageName).value);
+        document.getElementById(pageName).style.display = "block"; 
     }
-    console.log(document.getElementById(pageName).value);
-    document.getElementById(pageName).style.display = "block"; 
-}
+    
+    function openWindow(contestId)
+    {
+        window.open('ranklist.php?contestId='+contestId);
+    }
 
 </script>
-</div>
+
  
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">

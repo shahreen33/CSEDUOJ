@@ -41,19 +41,18 @@ def start_session(login_url, username, password):
 
 def submit_solution(name, language, filepath):
         link = url + '/submit/complete/'
+        print language
+        print name
         try:
             if (not os.path.isfile(filepath)):
                 raise IOError
             payload = dict(problemcode = name, lang = language, file = open(filepath, 'rb').read(), submit = "Send")
             r = session.post(link, data = payload)
-            sub_id = re.search(r'"newSubmissionId" value="(\d+)"/>', r.text).group(1)
-        except AttributeError:
-            errorLog.write ('Wrong ProblemCode!Enter Again!\n')
-            return
         except IOError:
             errorLog.write ("FilePath is not valid!Enter Again!\n")
             return
         time.sleep(1)
+        print "got to  here"
         getVerdict(url + '/status/' + name + ',' + user + '/')
         '''while (True):
             if (my_status(url + '/status/' + name + ',' + user + '/', check = True)):
@@ -102,6 +101,7 @@ def main():
 
    # print ('\t\t\t\t\t\t\tFull Screen Recommended')
     if(login(url + '/login', 'cseduoj1', '123456') == True):
+        print("at least here")
         submit_solution(problemCode, language, filename)
     print verdict
 if __name__ == '__main__':

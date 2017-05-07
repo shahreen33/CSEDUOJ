@@ -71,8 +71,9 @@ select{
     cursor: pointer;
 }
     </style>
-        
+          <img src="other.png" style="width: 100%">
 <?php
+
 require('database.php');
 session_start();
 global $con;
@@ -193,8 +194,8 @@ if (isset($_REQUEST['contestTitle'])){
     else{
             ?>
             <div class="form">
-            <h2>Create Contest</h2>
-            <h3>Basic Information</h3>
+            <h2 style="color:black;">Create Contest</h2>
+            <h3>1. Basic Information</h3>
             <form name="createContest" action="" method="post">
             <br> <input type="text" name="contestTitle" placeholder="Contest Title" required  />Keep as short as possible<br>
             <br><input type="date" name="contestDate" required/> Starting date<br>
@@ -203,7 +204,7 @@ if (isset($_REQUEST['contestTitle'])){
             <br><input type="text" name="contestDescription" placeholder="Description"/>Write any description if needed.<br>
             <br><input type="text" name="contestAnnouncements" placeholder="Announcements"/>Write any announcement if needed.<br>
             <p id="warning_msg"></p><br>
-            <h3>Add problems</h3>
+            <h3>2. Add problems</h3>
             <input type="button" value="Add problem" onClick="addRow()"/>
             <input type="button" value="Delete Problem" onClick="deleteRow()"/>
             <p id ="msg" />

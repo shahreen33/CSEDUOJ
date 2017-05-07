@@ -15,11 +15,10 @@
 </head>
 
 <body>
-  
+ <img src="other.png" style="width: 100%">
 <?php
 
 require('database.php');
-session_start();
 global $con;
 if (isset($_REQUEST['id'])){
         $id = stripslashes($_REQUEST['id']);
@@ -32,22 +31,32 @@ if (isset($_REQUEST['id'])){
         $query = "SELECT * FROM users WHERE id = '$id' AND password = '$password'";
         $result = mysqli_query($con,$query);
         $count = mysqli_num_rows($result);
-        if($count == 1){
-                $_SESSION['id'] = $id;
-                
-                header("Location: authorize.php");
-                echo "<div class='form'>
-                <h2>Log in successful.</h2>
-                </div>";
         
+      
+        if($count == 1){
+                $row = mysqli_fetch_array($result);
+                $verified = $row['verified'];
+                if($verified == '0')
+                {
+                     echo "<div class='form'>
+                        <h2>Your account is not verified yet. Please check your email to get the link to activate your account!</h2>
+                         </div>";
+                }
+                else
+                {
+                    session_start();
+                    $_SESSION['id'] = $id;
+                    header("Location: authorize.php");
+                
+                }
      }
       else
       {
                 echo "<div class='form'>
-                        <h2>Ooops! There has been a problem!</h2>
+                        <h3>Ooops! There has been a problem!</h3>
                         <br/>Error entering User id or password</div>";
    
-                echo "<br/>Click here to <a href='register.php'>Register</a> or <a href='login.php'>Log In</a> </div>";
+                echo "<br/>Click here to <a href='index.php'>Register</a> or <a href='index.php'>Log In</a> </div>";
        }
 }
    
