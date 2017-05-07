@@ -33,7 +33,7 @@ def start_session(login_url, username, password):
             #print soup
             for auth in soup.find_all('h3'):
                 if (auth.get_text() == 'Authentication failed!'):
-                    #errorLog.write("Cannot login\n")
+                    errorLog.write("Cannot login\n")
                     global verdict
                     verdict = "Internal Error"
                     return False
@@ -48,10 +48,10 @@ def submit_solution(name, language, filepath):
             r = session.post(link, data = payload)
             sub_id = re.search(r'"newSubmissionId" value="(\d+)"/>', r.text).group(1)
         except AttributeError:
-            #errorLog.write ('Wrong ProblemCode!Enter Again!\n')
+            errorLog.write ('Wrong ProblemCode!Enter Again!\n')
             return
         except IOError:
-            #errorLog.write ("FilePath is not valid!Enter Again!\n")
+            errorLog.write ("FilePath is not valid!Enter Again!\n")
             return
         time.sleep(1)
         getVerdict(url + '/status/' + name + ',' + user + '/')
@@ -90,7 +90,6 @@ def main():
     :return: 
     '''
     #print 'fine'
-    errorLog.write("\n again testing\n")
     problemCode = sys.argv[1]
     filename = sys.argv[2]
     language = sys.argv[3]
