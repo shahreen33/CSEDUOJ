@@ -64,7 +64,7 @@ def submit_solution(name, language, filepath):
 def getVerdict(link):
     r = session.get(link)
     html = r.text.encode('utf-8').replace('</td></td>', '</td>')
-    soup = BeautifulSoup(html, 'html.parser')
+    soup = BeautifulSoup(html, 'html5lib')
 
     rows = soup.find('table', {'class': 'problems'}).findAll('tr')
     col = rows[1].find_all('td')
