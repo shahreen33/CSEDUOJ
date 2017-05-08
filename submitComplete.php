@@ -70,9 +70,14 @@ if(isset($_REQUEST['code']))
              {
                 echo "<div class='form'>
                 <h2>Submission complete!</h2>
-                <h2>Verdict: ".$verdict."</h2>";
+                <h2>Verdict: ".$verdict."</h2>"
+                        . "<a href='showContest.php?contestId=".$contestId."'>go to contest page</a>";
+        
              }
 }
 ?>
+       <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+ <p class="w3-medium">Powered by <a href="https://csedu.du.ac.bd" target="_blank">CSEDU</a></p>
+</footer>
 </body>
 </html>

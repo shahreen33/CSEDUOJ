@@ -61,10 +61,11 @@ global $con;
             </div>
             <!--<a href="signup.php" class="button">SIGN UP</a>-->
            
-            <br/>Click here to <a href='index.php'>register</a>;
             <?php
      }
      ?>
-     
+     <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+ <p class="w3-medium">Powered by <a href="https://csedu.du.ac.bd" target="_blank">CSEDU</a></p>
+</footer>
 </body>
 </html>

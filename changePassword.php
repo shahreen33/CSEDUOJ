@@ -77,7 +77,7 @@ session_start();
             </div>
             <!--<a href="signup.php" class="button">SIGN UP</a>-->
            
-            <br/>Click here to <a href='index.php'>register</a>;
+            s
             <?php
      }
      ?>

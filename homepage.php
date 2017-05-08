@@ -198,7 +198,7 @@ body {font-family: "Lato", sans-serif}
             <th></th><th></th>
      <?php
      $id = $_SESSION['id'];
-     echo $id;
+     
      $qry = "SELECT * from users where id='$id'";
      $res = mysqli_query($con, $qry);
      $row = mysqli_fetch_array($res);
@@ -360,7 +360,7 @@ body {font-family: "Lato", sans-serif}
     <div class="w3-black" id="Contests">
    <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="Problems">
        <a href="createContest.php" class="w3-button w3-padding-large w3-hide-small w3-right">Create Contest</a>
-    <h2 class="w3-wide">Contests</h2>
+    <h2 class="w3-wide" style="color:whitesmoke">Contests</h2>
     <div id="constrainer" class="w3-center">
         <div class="scrolltable">
             <table class="header"><thead><th>Contest Id</th><th>Title</th><th>Begin</th><th>End</th><th>Duration</th><th>Status</th><th>Setter Id</th></thead></table>
@@ -466,15 +466,8 @@ body {font-family: "Lato", sans-serif}
 
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
-  <i class="fa fa-facebook-official w3-hover-opacity"></i>
-  <i class="fa fa-instagram w3-hover-opacity"></i>
-  <i class="fa fa-snapchat w3-hover-opacity"></i>
-  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-  <i class="fa fa-twitter w3-hover-opacity"></i>
-  <i class="fa fa-linkedin w3-hover-opacity"></i>
-  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+ <p class="w3-medium">Powered by <a href="https://csedu.du.ac.bd" target="_blank">CSEDU</a></p>
 </footer>
-
 <script>
 // Automatic Slideshow - change image every 4 seconds
 var myIndex = 0;

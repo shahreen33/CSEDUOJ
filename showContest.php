@@ -344,7 +344,6 @@ var x = setInterval(function() {
 <div class="w3-container w3-padding-24 w3-opacity w3-light-blue">
     <div class="w3-bar w3-blue">
      <button class="w3-bar-item w3-button w3-large" onclick="openPage('Overview')">Overview</button>
-     <button class="w3-bar-item w3-button w3-large" onclick="openPage('Problem')">Problem</button>
      <button class="w3-bar-item w3-button w3-large" onclick="openPage('Status')">Status</button>
      <button class="w3-bar-item w3-button w3-large" onclick="openWindow(<?php echo $_GET['contestId']?>)">Rank</button>
     </div>
@@ -407,7 +406,6 @@ var x = setInterval(function() {
            echo "
                      <table style=' font-family: arial, sans-serif; border-collapse: collapse; width: 100%;'>
                      <tr style='background-color: #1E90FF;'>
-                        <th style='border: 1px solid #dddddd; text-align: left;padding: 8px'>Stat</th>
                         <th style='border: 1px solid #dddddd; text-align: left;padding: 8px'>#</th>
                          <th style='border: 1px solid #dddddd; text-align: left;padding: 8px'>Title</th>
                         </tr>
@@ -416,7 +414,6 @@ var x = setInterval(function() {
          {
              $url = "showProblem.php?problemIdMod=".$problems[$i][3]."&contestId=".$contestId;
             echo "     <tr style='background-color:#1E90FF;'>
-                        <td style='border: 1px solid #dddddd; text-align: left;padding: 8px'>".$problems[$i][0]."</td>
                         <td style='border: 1px solid #dddddd; text-align: left;padding: 8px'>".$problems[$i][1]."</td>
                         <td style='border: 1px solid #dddddd; text-align: left;padding: 8px'><a href='".$url."'>".$problems[$i][2]."</a></td>
                       </tr>";
@@ -515,15 +512,8 @@ var x = setInterval(function() {
  
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
-  <i class="fa fa-facebook-official w3-hover-opacity"></i>
-  <i class="fa fa-instagram w3-hover-opacity"></i>
-  <i class="fa fa-snapchat w3-hover-opacity"></i>
-  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-  <i class="fa fa-twitter w3-hover-opacity"></i>
-  <i class="fa fa-linkedin w3-hover-opacity"></i>
-  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+ <p class="w3-medium">Powered by <a href="https://csedu.du.ac.bd" target="_blank">CSEDU</a></p>
 </footer>
-
 <script>
 // Automatic Slideshow - change image every 4 seconds
 var myIndex = 0;

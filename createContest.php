@@ -167,7 +167,6 @@ if (isset($_REQUEST['contestTitle'])){
                         $query = "insert into problemlist(problemId,oj, problemName, problemIdMod) values ('$probId','$oj', '$probName', '$probIdMod')";
                         $result = mysqli_query($con, $query);     
                     }
-                    echo $contestId;
                     $solvecount = 0;
                     $query = "insert into contest_problem(contestId, problemIdMod,serial, solvecount) values ('$contestId', '$probIdMod','$serial', '$solvecount')";
                     $result = mysqli_query($con, $query); 
@@ -178,7 +177,7 @@ if (isset($_REQUEST['contestTitle'])){
 
                 echo "<div class='form'>
                         <h2>Your contest has been created successfully</h2></div>";
-                $contestUrl = 'showContest.php?id='.$contestId;
+                $contestUrl = 'showContest.php?contestId='.$contestId;
                 echo "<br/>Click here to <a href='".$contestUrl."'>go to your contest page.</a></div>";
         }
       else
@@ -337,7 +336,10 @@ if (isset($_REQUEST['contestTitle'])){
         </script>
                     <!--<a href="signup.php" class="button">SIGN UP</a>-->
                     <?php 
-                    echo "<br/>Click here to <a href='login.php'>Log In</a></div>";
+                    
             } ?>
+        <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+        <p class="w3-medium">Powered by <a href="https://csedu.du.ac.bd" target="_blank">CSEDU</a></p>
+       </footer>
         </body>
         </html>

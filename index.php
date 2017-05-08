@@ -427,7 +427,7 @@ body {font-family: "Lato", sans-serif}
 
   <!-- The Tour Section -->
   <div class="w3-black" id="Contests">
-   <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="Problems">
+   <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="Contests">
        <h2 class="w3-wide" style="color:whitesmoke">Contests</h2>
     <div id="constrainer" class="w3-center">
         <div class="scrolltable">
@@ -539,13 +539,7 @@ body {font-family: "Lato", sans-serif}
 <!-- Add Google Maps -->
 
 <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
-  <i class="fa fa-facebook-official w3-hover-opacity"></i>
-  <i class="fa fa-instagram w3-hover-opacity"></i>
-  <i class="fa fa-snapchat w3-hover-opacity"></i>
-  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-  <i class="fa fa-twitter w3-hover-opacity"></i>
-  <i class="fa fa-linkedin w3-hover-opacity"></i>
-  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+ <p class="w3-medium">Powered by <a href="https://csedu.du.ac.bd" target="_blank">CSEDU</a></p>
 </footer>
 
 <script>

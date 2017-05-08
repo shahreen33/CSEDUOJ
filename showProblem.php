@@ -200,7 +200,7 @@ global $con;
             <form name="submitSolution" action="submitComplete.php" method="post">
             <br> <input type="text" name="contestId" value="'.$contestId.'" required /><br>
             <br> <input type="text" name="problemIdMod" value="'.$problemIdMod.'" required /><br>
-            <br> <textarea class="form-control" name="code" id="submit-solution" rows="15" placeholder="At least 50 characters"></textarea> <br>
+            <br> <textarea class="form-control" name="code" id="submit-solution" rows="10" placeholder="At least 50 characters"></textarea> <br>
             <select name="lang" id="lang" class="form-control">
 												<option value="7">Ada95 (gnat 6.3)</option>
 												<option value="59">Any document (no testing)</option>
@@ -295,7 +295,7 @@ global $con;
             </div>
             <!--<a href="signup.php" class="button">SIGN UP</a>-->
            
-            <br/>Click here to <a href=index.php>register</a>;
+            
     
     </div>
   
@@ -335,6 +335,8 @@ window.onclick = function(event) {
     
       
 ?>
-
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+ <p class="w3-medium">Powered by <a href="https://csedu.du.ac.bd" target="_blank">CSEDU</a></p>
+</footer>
  </body>
 </html>
