@@ -1,8 +1,8 @@
 <?php
 error_reporting(E_ERROR | E_PARSE);
 global $con;
-$con= mysqli_connect("localhost","root","","cseduoj");
-//$con= mysqli_connect("localhost","cseduoj","cseduoj","cseduoj");
+//$con= mysqli_connect("localhost","root","","cseduoj");
+$con= mysqli_connect("localhost","cseduoj","cseduoj","cseduoj");
 
 // Check connection
 if (mysqli_connect_errno())
