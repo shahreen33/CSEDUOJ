@@ -169,7 +169,7 @@ body {font-family: "Lato", sans-serif}
     error_reporting(E_ERROR | E_PARSE);
     require 'database.php';
     require 'authorize.php';
-  
+    
     ?>
 <body>
    
@@ -182,6 +182,7 @@ body {font-family: "Lato", sans-serif}
     <a href="#Problems" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PROBLEMS</a>
     <a href="#Contests" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTESTS</a>
     <a href="#Status" class="w3-bar-item w3-button w3-padding-large w3-hide-small">STATUS</a>
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-right">DEMO ID: DEMO<br>PASS: Q1234567</br></a>
     <button id="register" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-right">REGISTER</button>
     <button id="login" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-right">LOG IN</button>
 
